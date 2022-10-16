@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/playersRankingFragment">
+
+    <fragment
+        android:id="@+id/playersRankingFragment"
+        android:name="com.vladds.foosballking.presentation.ranking.PlayersRankingFragment"
+        android:label="@string/ranking"
+        tools:layout="@layout/fragment_players_ranking" />
+
+    <fragment
+        android:id="@+id/gamesHistoryRecordsFragment"
+        android:name="com.vladds.foosballking.presentation.history.GamesHistoryRecordsFragment"
+        android:label="@string/history"
+        tools:layout="@layout/fragment_games_history">
+        <action
+            android:id="@+id/action_gamesHistoryRecordsFragment_to_addGameHistoryRecordFragment"
+            app:destination="@id/addGameHistoryRecordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addGameHistoryRecordFragment"
+        android:name="com.vladds.foosballking.presentation.history.AddGameHistoryRecordFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_add_game_history_record">
+        <action
+            android:id="@+id/action_addGameHistoryRecordFragment_to_pickPlayerFragment"
+            app:destination="@id/pickPlayerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pickPlayerFragment"
+        android:name="com.vladds.foosballking.presentation.player.PickPlayerFragment"
+        android:label="PickPlayerFragment"
+        tools:layout="@layout/fragment_pick_player" />
+
+</navigation>
