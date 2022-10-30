@@ -1,11 +1,10 @@
 buildscript {
     ext {
-        activity_version = "1.6.0"
-        fragment_version = "1.5.3"
+        activity_version = "1.6.1"
+        fragment_version = "1.5.5"
         room_version = "2.4.3"
         mockkVersion = "1.13.2"
-        rxjava_version = "2.2.21"
-        nav_version = "2.5.2"
+        nav_version = "2.5.3"
         coroutines_version = "1.6.4"
     }
 }

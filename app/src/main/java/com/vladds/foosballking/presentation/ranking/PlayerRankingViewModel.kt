@@ -7,16 +7,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PlayerRankingViewModel @Inject constructor(
-    private val rankingUseCase: StreamableRankedPlayersUseCase
+    private val rankingUseCase: StreamableRankedPlayersUseCase,
 ) : ViewModel() {
 
-    val rankingCategory: Flow<RankingCategory>
-        get() = rankingUseCase.rankingCategory
-
-    val rankedPlayers: Flow<List<PlayersRankingUseCase.RankedPlayer>>
-        get() = rankingUseCase.rankedPlayers
-
-    fun setRankingCategory(category: RankingCategory) {
-        rankingUseCase.setRankingCategory(category)
+    fun getRankedPlayersForCategory(category: RankingCategory): Flow<List<PlayersRankingUseCase.RankedPlayer>> {
+        return rankingUseCase.getRankedPlayersForCategory(category)
     }
 }
