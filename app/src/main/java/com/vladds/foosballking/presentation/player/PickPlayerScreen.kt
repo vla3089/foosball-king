@@ -5,9 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ListItem
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -15,7 +16,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.accompanist.themeadapter.material.MdcTheme
 import com.vladds.foosballking.core.presentation.collectAsStateLifecycleAware
 import com.vladds.foosballking.data.player.Player
 import com.vladds.foosballking.foosballKingComponent
@@ -40,7 +40,7 @@ fun PickPlayerScreen(
 @Composable
 private fun GameHistoryViewPreview() {
     val player = Player(0, "Dave")
-    MdcTheme {
+    MaterialTheme {
         GameHistoryRecordList(MutableStateFlow(listOf(player))) { }
     }
 }
@@ -63,7 +63,7 @@ fun GameHistoryRecordList(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlayerRow(
     player: Player,
@@ -71,7 +71,7 @@ private fun PlayerRow(
 ) {
     ListItem(
         modifier = Modifier.clickable { onClick(player) },
-        text = {
+        headlineText = {
             Text(player.name)
         }
     )

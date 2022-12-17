@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -14,7 +15,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.accompanist.themeadapter.material.MdcTheme
 import com.vladds.foosballking.R
 import com.vladds.foosballking.core.presentation.collectAsStateLifecycleAware
 import com.vladds.foosballking.domain.PlayersRankingUseCase
@@ -62,7 +62,7 @@ fun RankedPlayersList(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RankedPlayerRow(
     rankedPlayer: PlayersRankingUseCase.RankedPlayer,
@@ -70,10 +70,10 @@ fun RankedPlayerRow(
 ) {
     ListItem(
         modifier = Modifier.clickable { onClick(rankedPlayer) },
-        text = {
+        headlineText = {
             Text(rankedPlayer.player.name)
         },
-        trailing = {
+        trailingContent = {
             Text(rankedPlayer.score.toString())
         }
     )
@@ -82,7 +82,7 @@ fun RankedPlayerRow(
 @Composable
 @Preview
 fun RankedTabsPreview() {
-    MdcTheme {
+    MaterialTheme {
         RankedTabs()
     }
 }

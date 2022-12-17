@@ -1,18 +1,20 @@
 package com.vladds.foosballking.presentation
 
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -24,7 +26,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.accompanist.themeadapter.material.MdcTheme
 import com.vladds.foosballking.R
 import com.vladds.foosballking.core.presentation.collectAsStateLifecycleAware
 import com.vladds.foosballking.presentation.history.GameHistoryRecordDetailsScreen
@@ -32,41 +33,40 @@ import com.vladds.foosballking.presentation.history.HistoryScreen
 import com.vladds.foosballking.presentation.player.PickPlayerScreen
 import com.vladds.foosballking.presentation.ranking.RankingScreen
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
-            MdcTheme {
+            val dynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+            val systemInDarkTheme = isSystemInDarkTheme()
+            val colorScheme = when {
+                dynamicColor && systemInDarkTheme -> dynamicDarkColorScheme(LocalContext.current)
+                dynamicColor -> dynamicLightColorScheme(LocalContext.current)
+                systemInDarkTheme -> darkColorScheme()
+                else -> lightColorScheme()
+            }
+
+            MaterialTheme(
+                colorScheme = colorScheme
+            ) {
                 val navController = rememberNavController()
                 Scaffold(topBar = {
                     TopAppBar(
-                        title = { Text("TopAppBar") },
-                        navigationIcon = if (navController.previousBackStackEntry != null) {
-                            {
-                                IconButton(onClick = { navController.navigateUp() }) {
-                                    Icon(
-                                        imageVector = Icons.Filled.ArrowBack,
-                                        contentDescription = "Back"
-                                    )
-                                }
-                            }
-                        } else {
-                            null
-                        }
+                        title = { Text(stringResource(R.string.app_name)) },
                     )
                 },
                     floatingActionButton = {
                         FoosballKingFab(navController)
                     },
                     bottomBar = {
-                        BottomNavigation {
+                        NavigationBar {
                             val navBackStackEntry by navController.currentBackStackEntryAsState()
                             val currentDestination = navBackStackEntry?.destination
                             val items = listOf(Screen.Ranking, Screen.History)
                             items.forEach { screen ->
-                                BottomNavigationItem(icon = {
+                                NavigationBarItem(icon = {
                                     Icon(
                                         painterResource(id = screen.iconRes),
                                         contentDescription = null

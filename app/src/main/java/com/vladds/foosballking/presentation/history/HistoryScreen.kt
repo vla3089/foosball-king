@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.ListItem
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -55,7 +55,7 @@ fun GameHistoryRecordList(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun GameHistoryRecordRow(
     record: GameHistoryRecord,
@@ -63,10 +63,10 @@ private fun GameHistoryRecordRow(
 ) {
     ListItem(
         modifier = Modifier.clickable { onClick(record) },
-        text = {
+        headlineText = {
             Text(record.formatAsSingleString())
         },
-        trailing = {
+        trailingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_baseline_keyboard_arrow_right_24),
                 contentDescription = null
