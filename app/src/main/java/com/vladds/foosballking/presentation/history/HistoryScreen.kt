@@ -43,10 +43,8 @@ fun GameHistoryRecordList(
     onClick: (GameHistoryRecord) -> Unit
 ) {
     val recordsState by records.collectAsStateLifecycleAware(emptyList())
-    val listState = rememberLazyListState()
-
     LazyColumn(
-        state = listState,
+        state = rememberLazyListState(),
         modifier = Modifier.padding(vertical = 4.dp)
     ) {
         items(items = recordsState) { record ->

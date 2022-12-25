@@ -51,9 +51,8 @@ fun RankedPlayersList(
     onClick: (PlayersRankingUseCase.RankedPlayer) -> Unit = {}
 ) {
     val state by rankedPlayers.collectAsStateLifecycleAware(emptyList())
-    val listState = rememberLazyListState()
     LazyColumn(
-        state = listState,
+        state = rememberLazyListState(),
         modifier = Modifier.padding(vertical = 4.dp)
     ) {
         items(items = state) { rankedPlayer ->

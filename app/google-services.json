@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "694547568248",
+    "project_id": "foosball-king",
+    "storage_bucket": "foosball-king.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694547568248:android:9c84f713cb093c03b83f8d",
+        "android_client_info": {
+          "package_name": "com.vladds.foosballking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694547568248-bgo58a4imtsnvo9v09cgon0eekfsvgnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBcor1sSOwBaHidLrdSiQOgnOClWPwDFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694547568248-bgo58a4imtsnvo9v09cgon0eekfsvgnv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
